@@ -14,9 +14,6 @@ public class Evento
     private Map<UUID,Participante> participantes =  new HashMap<>();
     private Map<UUID, Resenia> resenias;
    
-  
-
-
     public UUID getId() {
       return id;
     }
@@ -111,8 +108,6 @@ public class Evento
       this.resenias = resenias;
     }
 
-
-
     public Evento(UUID id, String nombre, String descripcion, LocalDateTime fechaHora, int capacidad, Chef chef,
         Map<UUID, Participante> participantes, Map<UUID, Resenia> resenias) {
       this.id = id;
@@ -124,8 +119,6 @@ public class Evento
       this.participantes = participantes;
       this.resenias = resenias;
     }
-
-
 
     public Evento() {};
   

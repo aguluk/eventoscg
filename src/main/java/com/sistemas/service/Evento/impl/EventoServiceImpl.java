@@ -2,25 +2,23 @@ package com.sistemas.service.Evento.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
 import com.sistemas.clases.Chef;
 import com.sistemas.clases.Evento;
-
+import com.sistemas.service.Chef.ChefService;
 import com.sistemas.service.Evento.EventoService;
 import com.sistemas.service.Organizador.OrganizadorService;
 
 public class EventoServiceImpl implements EventoService {
-    
-    private Map<UUID, Chef> chefs; 
+    private ChefService chefService;
     private OrganizadorService organizadorService;
 
-    public EventoServiceImpl(Map<UUID, Chef> chefs, OrganizadorService organizadorService) {
-        this.chefs = chefs;
+    public EventoServiceImpl(ChefService chefService, OrganizadorService organizadorService) {
+        this.chefService = chefService;
         this.organizadorService = organizadorService;
     }
 
@@ -34,7 +32,7 @@ public class EventoServiceImpl implements EventoService {
             String nombre = sc.nextLine();
             nuevoEvento.setNombre(nombre);
 
-            System.out.println("Ingrese la descripción del evento:");
+            System.out.println("Ingrese la descripcion del evento:");
             String descripcion = sc.nextLine();
             nuevoEvento.setDescripcion(descripcion);
 
@@ -43,9 +41,8 @@ public class EventoServiceImpl implements EventoService {
             LocalDateTime fechaHora = LocalDateTime.parse(fechaHoraStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             nuevoEvento.setFechaHora(fechaHora);
 
-            System.out.println("Ingrese la capacidad del evento (máximo 50 personas):");
+            System.out.println("Ingrese la capacidad del evento (maximo 50 personas):");
             int capacidad = sc.nextInt();
-            
             int capacidadMaxima = 50;
             while (capacidad > capacidadMaxima) {
                 System.out.println("Ingrese un valor menor o igual a " + capacidadMaxima + ":");
@@ -53,9 +50,14 @@ public class EventoServiceImpl implements EventoService {
             }
             nuevoEvento.setCapacidad(capacidad);
 
+            sc.nextLine(); 
+
             System.out.println("Ingrese el ID del chef en formato UUID:");
             try {
                 UUID idChef = UUID.fromString(sc.nextLine());
+
+                Map<UUID, Chef> chefs = chefService.getChefs();
+
                 if (chefs.containsKey(idChef)) {
                     Chef chef = chefs.get(idChef);
                     nuevoEvento.setChef(chef);
@@ -66,10 +68,13 @@ public class EventoServiceImpl implements EventoService {
             } catch (IllegalArgumentException e) {
                 System.out.println("El ID ingresado no tiene un formato UUID válido.");
             }
-            
+
             return nuevoEvento;
-        } // El Scanner se cierra automáticamente aquí
+        }
     }
+
+
+
 
     @Override
     public void listarEventos(LocalDateTime fechaHora) {

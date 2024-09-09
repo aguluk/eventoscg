@@ -17,7 +17,6 @@ public class ParticipanteServiceImpl  implements ParticipanteService{
         this.organizadorService = organizadorService;
     }
 
-
     @Override
     public Participante registrarParticipante() {
         
@@ -28,17 +27,14 @@ public class ParticipanteServiceImpl  implements ParticipanteService{
 
         System.out.println("Ingrese el nombre del Participante: ");
         String nombreParticipante = sc.nextLine();
-        sc.nextLine();
         participanteNuevo.setNombre(nombreParticipante);
 
         System.out.println("ingrese el apellido del Participante");
         String apellidoParticipante = sc.nextLine();
-        sc.nextLine();
         participanteNuevo.setApellido(apellidoParticipante);
 
         System.out.println("ingrese intereses culinarios");
         String nuevointereses = sc.nextLine();
-        sc.nextLine();
         participanteNuevo.setInteres(nuevointereses);
         sc.close();
         return participanteNuevo;
@@ -85,11 +81,11 @@ public class ParticipanteServiceImpl  implements ParticipanteService{
     }
     
        
+}
 
 
 
-
-        }
+        
 
 
 
