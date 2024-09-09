@@ -1,5 +1,6 @@
 package com.sistemas.clases;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,9 +9,31 @@ public class Participante {
     private String nombre;
     private String apellido;
     private String interes;
-    private List<Evento> Eventos;
+    private List<Evento> eventos = new ArrayList<>();
+    private Resenia resenia;
+    
    
    
+    public Resenia getResenia() {
+        return resenia;
+    }
+
+
+    public void setResenia(Resenia resenia) {
+        this.resenia = resenia;
+    }
+
+
+    public List<Evento> getEvento() {
+        return eventos;
+    }
+
+
+    public void setEvento(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+
     public String getInteres() {
         return interes;
     }
@@ -20,9 +43,6 @@ public class Participante {
         this.interes = interes;
     }
 
-
-    
-    
 
     public UUID getId() {
         return id;
@@ -57,28 +77,29 @@ public class Participante {
     
 
     public List<Evento> getEventos() {
-        return Eventos;
-    }
-
-
-    public void setEventos(List<Evento> eventos) {
-        Eventos = eventos;
+        return eventos;
     }
 
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Participante: {");
-        sb.append("id=").append(id);
-        sb.append(", nombre='").append(nombre).append("'");
-        sb.append(", apellido='").append(apellido).append("'");
-        sb.append(", intereses=").append(interes); 
-        sb.append(", eventos=");
-        sb.append(Eventos); 
-        sb.append("}");
-        return sb.toString();
+      StringBuilder sb = new StringBuilder();
+      sb.append("Participante{");
+      sb.append("id=").append(id);
+      sb.append(", nombre='").append(nombre).append('\'');
+      sb.append(", apellido='").append(apellido).append('\'');
+      sb.append(", interes='").append(interes).append('\'');
+      sb.append(", eventos=").append(eventos);
+      sb.append(", resenia=").append(resenia);
+      sb.append('}');
+      return sb.toString();
     }
+
+
+  
+
+
+    
 
 
 }

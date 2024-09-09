@@ -62,7 +62,7 @@ public class Resenia {
         this.calificacion = calificacion;
     }
 
-      
+    public Resenia(){}; 
 
     public Resenia(UUID id, String descripcion, Evento evento, Participante participante,
             CalificacionEnum calificacion) {
