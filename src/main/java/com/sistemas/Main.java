@@ -32,9 +32,10 @@ public class Main {
       
       Scanner scanner = new Scanner(System.in);
 
+
       menuService.mostrarMenu(scanner);  
+      scanner.close();
 
-
-      scanner.close(); 
+       
   }
 }

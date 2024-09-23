@@ -13,4 +13,6 @@ public interface ChefService {
     public void mostrarDetallesChef(Chef chef);
 
     Map<UUID, Chef> getChefs();
+
+    public Chef buscarChefByID();
 }
